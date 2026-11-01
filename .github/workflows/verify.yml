@@ -1,0 +1,25 @@
+name: Verify Door-Key planning
+
+on: [push, pull_request]
+
+jobs:
+  solve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python create_env.py
+      - run: python doorkey.py --part all
+      - name: Check output coverage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          assert len(list(Path('envs/known_envs').glob('*.env'))) == 7
+          assert len(list(Path('envs/random_envs').glob('*.env'))) == 36
+          assert len(list(Path('gif').glob('*.gif'))) == 43
+          print('Solved 7 known and 36 variable Door-Key maps')
+          PY
