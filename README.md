@@ -22,15 +22,16 @@ Use Python 3.11 or 3.12 from the repository root:
 
 ```bash
 python -m venv .venv
+source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python create_env.py
 python doorkey.py --part known
 python doorkey.py --part random
 ```
 
-On Windows, use `.venv\Scripts\python` for the commands after creating the environment. On macOS or Linux, use `.venv/bin/python`.
+Activate the virtual environment for your platform before installing dependencies.
 
-`create_env.py` writes 43 map snapshots and serialized environments to `envs/`. The solver writes animations to `gif/`. These generated directories are ignored by Git. The `.env` files use Python pickle; load only files you generated or otherwise trust.
+`create_env.py` writes 44 map snapshots and serialized environments to `envs/`: 7 solved fixed layouts, 1 additional example layout, and 36 variable layouts. The solver writes 43 animations to `gif/`. These generated directories are ignored by Git. The `.env` files use Python pickle; load only files you generated or otherwise trust.
 
 ## Code
 

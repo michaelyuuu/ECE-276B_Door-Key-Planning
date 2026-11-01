@@ -18,7 +18,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          assert len(list(Path('envs/known_envs').glob('*.env'))) == 7
+          assert len(list(Path('envs/known_envs').glob('*.env'))) == 8
           assert len(list(Path('envs/random_envs').glob('*.env'))) == 36
           assert len(list(Path('gif').glob('*.gif'))) == 43
           print('Solved 7 known and 36 variable Door-Key maps')
